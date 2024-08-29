@@ -51,9 +51,13 @@ def escolher_opcao():
 
             os.system('cls')
             print('Cadastro de novos Celulares')
-            destino_celular = input("Digite para onde vai o seu Celular")
-            celulares.append(destino_celular)
-            print(f" O seu Celular foi Cadastrado com sucesso e será enviado para: {destino_celular} ")
+            nome_celular = input(" Digite qual Celular você quer: ")
+            modelo_celular = input(f' Digite qual modelo que você está procurando: ')
+            dados_do_celular = {'nome':nome_celular, 'Modelo':modelo_celular, 'ativo': True}
+            celulares.append(dados_do_celular)
+
+            print(f" O Celular {nome_celular} foi Cadastrado com Sucesso!")
+
 
             retorna_menu()
 
