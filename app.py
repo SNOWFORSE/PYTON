@@ -38,8 +38,11 @@ def mostra_escolhas():
 def escolher_opcao():
 
     def exibir_subtitulo(texto):
-        os.system('cls')
+        os.system('clear')
+        linha = "*" * len(texto)
+        print(linha)
         print(texto)
+        print(linha)
         print('')
 
     def retorna_menu():
@@ -49,13 +52,11 @@ def escolher_opcao():
     def cadastro_Celulares():
             exibir_subtitulo('Cadastrar Celulares')
 
-            os.system('cls')
             print('Cadastro de novos Celulares')
             nome_celular = input(" Digite qual Celular você quer: ")
             modelo_celular = input(f' Digite qual modelo que você está procurando: ')
             dados_do_celular = {'nome':nome_celular, 'Modelo':modelo_celular, 'ativo': True}
             celulares.append(dados_do_celular)
-
             print(f" O Celular {nome_celular} foi Cadastrado com Sucesso!")
 
 
@@ -66,20 +67,36 @@ def escolher_opcao():
         
         for celular in celulares:
             nome_celular = celular['nome']
+            print(f"{nome_celular.ljust(22)} | {modelo.ljust(20)} | Status ")
             modelo_celular = celular['Modelo']
             ativo = celular['ativo']
-            print(f' - {nome_celular} | {modelo_celular} | {ativo}')
+            print(f' - {nome_celular.ljust(20)} | {modelo_celular.ljust(20)} | {ativo}')
         
         retorna_menu()
     
+    def ativar_celular():
+        exibir_subtitulo("Ativar Celular")
+        nome_celular = input("Digite o nome do Celular que você deseja ativar:")
+        celular_encontrado = false
+
+        for celular in celulares:
+            if nome_celular == celular["nome"]:
+                celular_encontrado = True
+                celular["ativo"] = not celular["ativo"]
+                mensagem = f"O Celular {nome_celular} foi ativado com sucesso." if celular["ativo"] else f"O Celular {nome_celular} foi desativado com sucesso."
+                print(mensagem)
+
+        if not celular_encontrado:
+            print("Não encontrado")
+        retorna_menu()
+    
     def finalizar_app():
-        os.system('cls')
-        print("Finalizando programa")
+        exibir_subtitulo("Finalizando o programa\n")
 
     def opcao_invalida():
-        print("Opçao Invalida")
-        input("Aperte um botão para retornar")
-        main()
+        print("Esse carácter não é permitido")
+
+    retorna_menu()
 
     opcao_escolhida = int(input('Escolha uma opção:'))
     try:
@@ -88,7 +105,7 @@ def escolher_opcao():
         elif opcao_escolhida == 2:
             listar_celulares()
         elif opcao_escolhida == 3:
-            print('Ativar Celular')
+            ativar_celular()
         elif opcao_escolhida == 4:
             finalizar_app()
         else:
@@ -97,7 +114,7 @@ def escolher_opcao():
         opcao_invalida()
 
 def main():
-    os.system('cls')
+    os.system('clear')
     mostra_titulo()
     mostra_escolhas()
     escolher_opcao()
