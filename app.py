@@ -1,24 +1,25 @@
+
 import os
 
-celulares = [{'nome':'iPhone', 'Modelo':'11', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'11 Pro','ativo': True},
-             {'nome':'iPhone', 'Modelo':'11 Pro Max', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'12 Mini', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'12', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'12 Pro', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'12 Pro Max', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'13 Mini', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'13', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'13 Pro', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'13 Pro Max', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'14', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'14 Plus', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'14 Pro', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'14 Pro Max', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'15', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'15 Plus', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'15 Pro', 'ativo': True},
-             {'nome':'iPhone', 'Modelo':'15 Pro Max', 'ativo': True},
+celulares = [{'nome':'iPhone', 'modelo':'11', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'11 Pro','ativo': True},
+             {'nome':'iPhone', 'modelo':'11 Pro Max', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'12 Mini', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'12', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'12 Pro', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'12 Pro Max', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'13 Mini', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'13', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'13 Pro', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'13 Pro Max', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'14', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'14 Plus', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'14 Pro', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'14 Pro Max', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'15', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'15 Plus', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'15 Pro', 'ativo': True},
+             {'nome':'iPhone', 'modelo':'15 Pro Max', 'ativo': True},
              ]
 
 def mostra_titulo():
@@ -38,7 +39,7 @@ def mostra_escolhas():
 def escolher_opcao():
 
     def exibir_subtitulo(texto):
-        os.system('clear')
+        os.system('cls')
         linha = "*" * len(texto)
         print(linha)
         print(texto)
@@ -50,26 +51,25 @@ def escolher_opcao():
             main()
 
     def cadastro_Celulares():
-            exibir_subtitulo('Cadastrar Celulares')
+        exibir_subtitulo('Cadastrar Celulares')
 
-            print('Cadastro de novos Celulares')
-            nome_celular = input(" Digite qual Celular você quer: ")
-            modelo_celular = input(f' Digite qual modelo que você está procurando: ')
-            dados_do_celular = {'nome':nome_celular, 'Modelo':modelo_celular, 'ativo': True}
-            celulares.append(dados_do_celular)
-            print(f" O Celular {nome_celular} foi Cadastrado com Sucesso!")
+        print('Cadastro de novos Celulares')
+        nome_celular = input(" Digite qual Celular você quer: ")
+        modelo_celular = input(f' Digite qual modelo que você está procurando: ')
+        dados_do_celular = {'nome':nome_celular, 'modelo':modelo_celular, 'ativo': True}
+        celulares.append(dados_do_celular)
+        print(f" O Celular {nome_celular} foi Cadastrado com Sucesso!")
 
-
-            retorna_menu()
+        retorna_menu()
 
     def listar_celulares():
         exibir_subtitulo('Lista de Celulares Cadastrados')
-        
+
+        print(f"{"nome_celular".ljust(22)} | {"modelo_celular".ljust(20)} | Status ")
         for celular in celulares:
             nome_celular = celular['nome']
-            print(f"{nome_celular.ljust(22)} | {modelo.ljust(20)} | Status ")
-            modelo_celular = celular['Modelo']
-            ativo = celular['ativo']
+            modelo_celular = celular['modelo']
+            ativo = "Ativado" if celular['ativo'] else "Desativado"
             print(f' - {nome_celular.ljust(20)} | {modelo_celular.ljust(20)} | {ativo}')
         
         retorna_menu()
@@ -77,7 +77,7 @@ def escolher_opcao():
     def ativar_celular():
         exibir_subtitulo("Ativar Celular")
         nome_celular = input("Digite o nome do Celular que você deseja ativar:")
-        celular_encontrado = false
+        celular_encontrado = False
 
         for celular in celulares:
             if nome_celular == celular["nome"]:
@@ -90,16 +90,18 @@ def escolher_opcao():
             print("Não encontrado")
         retorna_menu()
     
+
+    
     def finalizar_app():
         exibir_subtitulo("Finalizando o programa\n")
 
     def opcao_invalida():
         print("Esse carácter não é permitido")
+        retorna_menu()
 
-    retorna_menu()
-
-    opcao_escolhida = int(input('Escolha uma opção:'))
     try:
+        opcao_escolhida = int(input('Escolha uma opção:'))
+
         if opcao_escolhida == 1:
             cadastro_Celulares()
         elif opcao_escolhida == 2:
@@ -114,10 +116,10 @@ def escolher_opcao():
         opcao_invalida()
 
 def main():
-    os.system('clear')
-    mostra_titulo()
-    mostra_escolhas()
-    escolher_opcao()
+        os.system('cls')
+        mostra_titulo()
+        mostra_escolhas()
+        escolher_opcao()
 
 if __name__ == "__main__":
     main()
